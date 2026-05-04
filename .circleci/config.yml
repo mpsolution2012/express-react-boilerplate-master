@@ -17,6 +17,6 @@ workflows:
       - lint:
           filters:
             branches:
-              ignore: /.*/
-            pull_requests:
-              only: /.*/
+              only:
+                - circleci-project-setup
+                
