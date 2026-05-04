@@ -14,4 +14,9 @@ workflows:
   version: 2
   lint-workflow:
     jobs:
-      - lint
+      - lint:
+          filters:
+            branches:
+              ignore: /.*/
+            pull_requests:
+              only: /.*/
