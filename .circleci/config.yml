@@ -7,6 +7,12 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Skip if not PR and not main
+          command: |
+            if [ -z "$CIRCLE_PULL_REQUEST" ] && [ "$CIRCLE_BRANCH" != "circleci-project-setup" ]; then
+              circleci step halt
+            fi
       - run: npm install
       - run: npm run lint
 
@@ -14,9 +20,6 @@ workflows:
   version: 2
   lint-workflow:
     jobs:
-      - lint:
-          filters:
-            branches:
-              only:
-                - circleci-project-setup
+      - lint
+          
                 
